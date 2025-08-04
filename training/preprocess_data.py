@@ -89,7 +89,7 @@ def preprocess_data(df, target="isFraud") -> tuple:
 
 
 @flow(name="run_preprocess_data")
-def run_process(
+def run_preprocessing(
     kaggle_username, 
     kaggle_key, 
     datapath, 
@@ -100,10 +100,14 @@ def run_process(
     """
     print("Downloading dataset from Kaggle...")
     # Download dataset from Kaggle
-    download_dataset(
-        kaggle_username=kaggle_username, 
-        kaggle_key=kaggle_key
-    )
+    if datapath is not None:
+        if os.path.isfile(datapath):
+            print(f"Dataset already exists at {datapath}. Skipping download.")
+        else:
+            download_dataset(
+                kaggle_username=kaggle_username, 
+                kaggle_key=kaggle_key
+            )
 
     print("Dataset downloaded. Starting data wrangling...")    
     df = wrangle(datapath)
@@ -118,6 +122,4 @@ def run_process(
 
     dump_pickle((X_samp, y_samp), os.path.join(dest_path, "train.pkl"))
     dump_pickle((X_test, y_test), os.path.join(dest_path, "test.pkl"))
-
-if __name__ == "__main__":
-    run_process()
+    print("Data preprocessing completed and saved to disk.")

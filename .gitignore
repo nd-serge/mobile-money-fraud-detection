@@ -221,3 +221,6 @@ run.sh
 training/data/
 training/mlartifacts/
 training/mlruns/
+
+deployment/test.py
+training/test.py
