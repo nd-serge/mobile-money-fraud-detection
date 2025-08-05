@@ -86,6 +86,31 @@ To execute, it is important to specify the `RUN_ID` of the model contained in th
  RUN_ID=your_model_run_id
 ```
 
+Currently there is a bug: the run ID is not the same for training and S3. Therefore, to get a valid RUN ID, you must enter `make ls-objects`
+
+
+```bash
+To extract the correct RUN_ID, look for the string after "m-" in the "Key" field from the output of make ls-objects.
+example: 
+         {
+            "Key": "1/models/m-314f3f443a5441b5b6523bc01e748b4a/artifacts/MLmodel",
+            "LastModified": "2025-08-05T10:44:12.000Z",
+            "ETag": "\"7f22c7b78675df831b34276dde1b7f67\"",
+            "ChecksumAlgorithm": [
+                "CRC32"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 1259,
+            "StorageClass": "STANDARD",
+            "Owner": {
+                "DisplayName": "webfile",
+                "ID": "75aa57f09aa0c8caeab4f8c24e99d10f8e7faeebf76c078efc7c6caea54ba06a"
+            }
+        }
+ RUN_ID = 314f3f443a5441b5b6523bc01e748b4a
+```
+
+
 
 Then, run the FastAPI application:
 
