@@ -40,9 +40,11 @@ Note: It is imperative to have a Kaggle account to download the dataset.
 
 ### How to Run the Training Workflow
 
+*Make sure you are using Python 3.12.*
+    
+
 1. **Complete your Kaggle credentials**
-    First, install Pipenv and ensure you are using Python 3.12.   
-    `pip install pipenv`
+   
 
    At the top of the `Makefile`, fill in your Kaggle username and password:
    ```makefile
