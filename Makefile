@@ -44,6 +44,7 @@ start-training: localstack install-deps
 
 start-app: localstack
 	cd deployment && \
+	pipenv install
 	docker build -t my-app .
 	docker run --network deployment_localstack-network -e AWS_ACCESS_KEY_ID=$(AWS_ACCESS_KEY_ID) \
            -e AWS_SECRET_ACCESS_KEY=$(AWS_SECRET_ACCESS_KEY) \
